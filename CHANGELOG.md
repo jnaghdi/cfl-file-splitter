@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.2 — 2026-09-21
+
+- Renamed the Windows application to **CFL FileSplitter For Uploading Large Files To Claude**. The full name is used in the window title, header, EXE filename, help/about dialog, CLI identification and new Claude handover instructions.
+- Added **https://cflab.uk** and **https://e-discovery.uk** to README.md, the About dialog and new handovers.
+- Adopted the **MIT License** for project code at the owner's request. Retained the separate Go runtime licence. The standalone/embedded Python helper now includes the full MIT notice.
+- Added About & licence, CLI `--version`, CLI `--help` and CLI `--license`.
+- Retained the Auto/NUL-byte/UTF-16 fix, the CFLSPLIT/1 format, all integrity checks and the no-overwrite policy. Only branding/version text changed in the core algorithm file.
+- Rebuilt the Windows x64 distribution. This is a Windows-only refresh of the supplied Windows v1.0.1 source snapshot; it does not replace the earlier Mac distribution or its repository.
+- Windows runtime testing, Claude upload testing and GitHub Actions execution still require those environments. See docs/VALIDATION.md.
+
 ## 1.0.1 — 2026-09-19
 
 ### Fixed

@@ -30,7 +30,8 @@ GitHub tokens, signing certificates, passwords or API keys.
 
 The application is local, but publishing and Actions workflows use the network.
 GitHub receives committed source and any uploaded CI artifacts. The publisher
-creates a private repository by default; it does not grant an open-source licence.
+creates a private repository by default. Repository visibility is independent of
+the owner-selected MIT License for the project source.
 
 ## Build and release
 

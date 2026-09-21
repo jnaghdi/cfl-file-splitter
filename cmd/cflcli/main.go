@@ -11,8 +11,23 @@ import (
 )
 
 func main() {
+	if len(os.Args) == 2 {
+		switch os.Args[1] {
+		case "--version", "version":
+			fmt.Println(core.AppName + " " + core.Version)
+			return
+		case "--license", "--licence":
+			fmt.Print(core.LicenseText)
+			return
+		case "--help", "-h":
+			fmt.Println(core.AppName + " - CLI")
+			fmt.Println("Commands: split | inspect | verify | join | --version | --license")
+			fmt.Println(core.PrimaryWebsite + " | " + core.DiscoveryWebsite)
+			return
+		}
+	}
 	if len(os.Args) < 2 {
-		fmt.Fprintln(os.Stderr, "CFL File Splitter CLI: split | inspect | verify | join")
+		fmt.Fprintln(os.Stderr, core.AppName+" - CLI: split | inspect | verify | join | --version | --license")
 		os.Exit(2)
 	}
 	cmd := os.Args[1]

@@ -1,0 +1,4 @@
+# cflsplit/cmd/cflsplit
+# [cflsplit/cmd/cflsplit]
+cmd/cflsplit/main_windows.go:657:30: possible misuse of unsafe.Pointer
+cmd/cflsplit/main_windows.go:705:21: possible misuse of unsafe.Pointer

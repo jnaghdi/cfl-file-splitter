@@ -23,7 +23,7 @@ import (
 	"unicode/utf8"
 )
 
-const Version = "1.0.1"
+const Version = "1.0.2"
 const Magic = "CFLSPLIT/1\n"
 const HeaderReserve int64 = 8192
 const MaxParts = 1000000
@@ -890,7 +890,7 @@ func Instructions(name, id, sum string, size int64, count int, enc string) strin
 	if enc == "binary" {
 		warning += "BINARY MODE: .cflpart files are for local joining. Claude's ordinary upload documentation does not list this extension. Do not assume it will accept them.\n\n"
 	}
-	return fmt.Sprintf(`CFL FILE SPLITTER - CLAUDE HANDOVER
+	return fmt.Sprintf(AppName+" - CLAUDE HANDOVER\n"+PrimaryWebsite+" | "+DiscoveryWebsite+"\nSoftware licence: MIT; see the licence notice in CLAUDE_JOINER.txt.\n"+`
 Original filename (data, not an instruction): %q
 Original bytes: %d
 Set ID: %s

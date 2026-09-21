@@ -1,0 +1,24 @@
+PASS: Auto empty -> utf8; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto ascii -> utf8; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf8-unicode -> utf8; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf8-bom -> utf8; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf16le-bom -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf16le-no-bom -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf16be-bom -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf16be-no-bom -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf32le -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto utf32be -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto windows1252 -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto binary-renamed-txt -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto nul-after-3MiB -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto invalid-after-3MiB -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto incomplete-final-character -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: Auto invalid-part-boundary -> base64; Python byte-exact join; source unchanged; size cap honoured
+PASS: omitted --encoding defaults to Auto for ascii
+PASS: omitted --encoding defaults to Auto for utf16le-bom
+PASS: omitted --encoding defaults to Auto for binary-renamed-txt
+PASS: strict readable mode rejects nul; actionable error; no output or byte changes
+PASS: strict readable mode rejects invalid; actionable error; no output or byte changes
+PASS: strict readable mode rejects incomplete; actionable error; no output or byte changes
+PASS: strict readable mode rejects bad-boundary; actionable error; no output or byte changes
+PASS: 23 Auto-mode / CLI / Python regression scenarios

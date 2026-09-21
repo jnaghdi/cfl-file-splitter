@@ -21,8 +21,8 @@ try {
     Invoke-Go -Arguments @('vet', './internal/core', './cmd/cflcli')
     New-Item -ItemType Directory -Force -Path 'bin' | Out-Null
     $env:GOOS = 'windows'; $env:GOARCH = 'amd64'
-    Invoke-Go -Arguments @('build', '-trimpath', '-buildvcs=false', '-ldflags=-s -w', '-o', 'bin/CFL_Splitter_CLI.exe', './cmd/cflcli')
-    Invoke-Go -Arguments @('build', '-trimpath', '-buildvcs=false', '-ldflags=-s -w -H=windowsgui', '-o', 'bin/CFL_File_Splitter.exe', './cmd/cflsplit')
+    Invoke-Go -Arguments @('build', '-trimpath', '-buildvcs=false', '-ldflags=-s -w', '-o', 'bin/CFL_FileSplitter_CLI.exe', './cmd/cflcli')
+    Invoke-Go -Arguments @('build', '-trimpath', '-buildvcs=false', '-ldflags=-s -w -H=windowsgui', '-o', 'bin/CFL FileSplitter For Uploading Large Files To Claude.exe', './cmd/cflsplit')
     Write-Host 'Built Windows x64 GUI and CLI in bin/. Interactive GUI testing is still required.'
 } finally {
     $env:GOOS = $oldOS; $env:GOARCH = $oldArch; $env:CGO_ENABLED = $oldCGO

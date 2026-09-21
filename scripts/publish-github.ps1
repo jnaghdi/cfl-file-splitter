@@ -122,12 +122,12 @@ try {
     # Explicit paths rather than git add .; ignored files must never be forced.
     foreach ($relative in $paths) { Invoke-Checked 'git' @('--literal-pathspecs', 'add', '--', $relative) }
     Invoke-Checked 'git' @('diff', '--cached', '--stat')
-    Invoke-Checked 'git' @('commit', '-m', 'Initial CFL File Splitter 1.0.0 source repository')
+    Invoke-Checked 'git' @('commit', '-m', 'CFL FileSplitter For Uploading Large Files To Claude 1.0.2 Windows MIT source repository')
     # The user has already explicitly authorised this remote write above.
     Invoke-Checked 'gh' @('repo', 'create', $target, '--private', '--source', '.', '--remote', 'origin', '--push', '--disable-wiki', '--description', 'Windows file splitter, verifier and joiner with SHA-256-verified self-identifying parts.')
     Write-Host "`nRepository created and source pushed:"
     Invoke-Checked 'gh' @('repo', 'view', "github.com/$target", '--json', 'url', '--jq', '.url')
-    Write-Host 'Check the real Actions results. Release publication and licensing remain owner decisions.'
+    Write-Host 'Check the real Actions results. The project uses MIT; repository visibility and release publication remain owner decisions.'
 } finally {
     $env:GH_HOST = $oldGHHost
     Pop-Location

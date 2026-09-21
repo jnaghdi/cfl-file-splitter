@@ -12,5 +12,6 @@ go vet ./internal/core ./cmd/cflcli
 python3 tests/repository_test.py
 python3 tests/cross_language_test.py
 python3 tests/auto_mode_test.py
+python3 tests/branding_test.py
 if [[ "${1:-}" == '--streaming' ]]; then python3 tests/streaming_test.py; fi
 printf '%s\n' 'Requested automated tests passed. GUI/Claude tests require their actual environments.'

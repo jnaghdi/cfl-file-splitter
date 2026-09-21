@@ -48,6 +48,12 @@ jobs:
       - name: Package release
         shell: bash
         run: python scripts/package_release.py
+      - name: Inspect packaged Windows files
+        shell: bash
+        run: |
+          for archive in dist/*Windows_v*.zip; do
+            python tests/windows_package_test.py "$archive"
+          done
       - name: Create draft release for owner review
         shell: bash
         env:
@@ -55,5 +61,5 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           gh release create "$RELEASE_TAG" dist/*.zip dist/*.sha256 \
-            --verify-tag --draft --title "CFL File Splitter $RELEASE_TAG" \
+            --verify-tag --draft --title "CFL FileSplitter For Uploading Large Files To Claude $RELEASE_TAG" \
             --notes-file docs/RELEASE_NOTES.md

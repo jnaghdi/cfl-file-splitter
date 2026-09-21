@@ -1,0 +1,14 @@
+test_build_and_ui_names (__main__.BrandingTests.test_build_and_ui_names) ... ok
+test_cli_full_license (__main__.BrandingTests.test_cli_full_license) ... ok
+test_cli_help_websites (__main__.BrandingTests.test_cli_help_websites) ... ok
+test_cli_version_exact_name (__main__.BrandingTests.test_cli_version_exact_name) ... ok
+test_embedded_and_standalone_licensing (__main__.BrandingTests.test_embedded_and_standalone_licensing) ... ok
+test_legacy_demo_sets_still_verify (__main__.BrandingTests.test_legacy_demo_sets_still_verify) ... ok
+test_new_split_handover_and_nul_roundtrip (__main__.BrandingTests.test_new_split_handover_and_nul_roundtrip) ... ok
+test_no_pending_licensing_in_current_guides (__main__.BrandingTests.test_no_pending_licensing_in_current_guides) ... ok
+test_readme_exact_heading_and_websites (__main__.BrandingTests.test_readme_exact_heading_and_websites) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.020s
+
+OK

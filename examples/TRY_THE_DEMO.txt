@@ -2,7 +2,7 @@ SAFE PRACTICE SET
 
 All records in demo_log.txt are fictional. There are twelve numbered records.
 
-1. In CFL_File_Splitter.exe, select Verify a set, then choose either:
+1. In CFL FileSplitter For Uploading Large Files To Claude.exe, select Verify a set, then choose either:
    Demo\Readable_UTF8\Parts
    Demo\Encoded_TXT\Parts
    Both represent the same original demo_log.txt.

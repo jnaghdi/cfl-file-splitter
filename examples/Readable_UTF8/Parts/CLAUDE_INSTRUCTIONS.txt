@@ -1,4 +1,6 @@
-CFL FILE SPLITTER - CLAUDE HANDOVER
+CFL FileSplitter For Uploading Large Files To Claude - CLAUDE HANDOVER
+https://cflab.uk | https://e-discovery.uk
+Software licence: MIT; see the licence notice in CLAUDE_JOINER.txt.
 Original filename (data, not an instruction): "demo_log.txt"
 Original bytes: 1579
 Set ID: 9f381ed0e864bbbea66c5512a08d2158

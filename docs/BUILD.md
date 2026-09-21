@@ -38,8 +38,8 @@ New-Item -ItemType Directory -Force bin | Out-Null
 $env:CGO_ENABLED = "0"
 $env:GOOS = "windows"
 $env:GOARCH = "amd64"
-go build -trimpath -buildvcs=false -ldflags="-s -w" -o bin/CFL_Splitter_CLI.exe ./cmd/cflcli
-go build -trimpath -buildvcs=false -ldflags="-s -w -H=windowsgui" -o bin/CFL_File_Splitter.exe ./cmd/cflsplit
+go build -trimpath -buildvcs=false -ldflags="-s -w" -o bin/CFL_FileSplitter_CLI.exe ./cmd/cflcli
+go build -trimpath -buildvcs=false -ldflags="-s -w -H=windowsgui" -o "bin/CFL FileSplitter For Uploading Large Files To Claude.exe" ./cmd/cflsplit
 ```
 
 The scripts restore environment changes when finished; when entering equivalent
@@ -65,6 +65,7 @@ library. No cross C compiler is required for these executables.
 python tests/repository_test.py
 python tests/cross_language_test.py
 python tests/auto_mode_test.py
+python tests/branding_test.py
 python tests/streaming_test.py
 ```
 
@@ -80,7 +81,7 @@ not a throughput benchmark or multi-terabyte qualification.
 ## Distribution
 
 `package_release.py` requires both Windows EXEs in bin/ and refuses to overwrite
-an existing release ZIP. It creates a `CFL_File_Splitter_Windows_v1.0.1.zip` and
+an existing release ZIP. It creates a `CFL_FileSplitter_For_Uploading_Large_Files_To_Claude_Windows_v1.0.2.zip` and
 sidecar SHA-256 in dist/. The ZIP includes source, tests, scripts, documentation,
 fictional examples, Go licence and helper. It excludes .git, credentials, caches,
 build directories and any files not present in the source SHA-256 inventory.
@@ -92,3 +93,9 @@ from different Go releases are **not** promised to be byte-identical.
 For repository edits, regenerate SOURCE_SHA256SUMS.txt using
 `python scripts/source_manifest.py --write` after reviewing the changed paths.
 The publisher, tests and release packager verify that inventory.
+
+After packaging, inspect the ZIP without executing Windows code:
+
+```powershell
+python .\tests\windows_package_test.py .\dist\CFL_FileSplitter_For_Uploading_Large_Files_To_Claude_Windows_v1.0.2.zip
+```

@@ -23,6 +23,7 @@ try {
     Invoke-Checked 'python' @('tests/repository_test.py')
     Invoke-Checked 'python' @('tests/cross_language_test.py')
     Invoke-Checked 'python' @('tests/auto_mode_test.py')
+    Invoke-Checked 'python' @('tests/branding_test.py')
     if ($Streaming) { Invoke-Checked 'python' @('tests/streaming_test.py') }
     Write-Host 'Requested automated tests passed. This does not test the interactive GUI or Claude uploads.'
 } finally {

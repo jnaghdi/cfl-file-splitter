@@ -1,0 +1,2 @@
+PASS: Python helper executable AST unchanged; only MIT comments added.
+PASS: core.go byte-exact after normalising version and handover branding. No split/join/hash algorithm changes.

@@ -12,7 +12,7 @@ never guess their contents.
 
 Suggested prompt:
 
-> These attachments contain CFL File Splitter pieces. Inspect CLAUDE_JOINER.txt
+> These attachments contain CFL FileSplitter For Uploading Large Files To Claude pieces. Inspect CLAUDE_JOINER.txt
 > and use code execution to verify every piece and reconstruct the original into
 > a new file. Order by embedded metadata, not filenames. Stop on missing,
 > duplicated, mixed or corrupt pieces, or unavailable original attachment bytes.

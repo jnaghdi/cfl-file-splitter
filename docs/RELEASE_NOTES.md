@@ -1,25 +1,22 @@
-# CFL File Splitter 1.0.1 — NUL-byte / UTF-16 mode-selection fix
+# CFL FileSplitter For Uploading Large Files To Claude — 1.0.2
 
-Fixes the dead-end error seen when NUL-containing or non-UTF-8 data was assigned
-Readable UTF-8 mode. Source selection no longer assumes `.txt`/`.log` means UTF-8.
+Windows x64 / MIT License / CFLSPLIT/1 unchanged.
 
-**Auto (recommended)** is now the GUI and CLI default: it validates the entire
-source for NUL-free UTF-8, otherwise selects lossless Base64. It never deletes
-NULs or converts the source. The actual encoding is reported in the log.
-Explicit strict-readable mode offers an encoded retry in the GUI. Real I/O,
-cancellation and integrity failures remain errors rather than being ignored.
+Websites: https://cflab.uk and https://e-discovery.uk.
 
-The transport format and Python helper are unchanged. Existing v1.0.0 sets
-remain supported. Scripts requiring Base64 should use `--encoding base64`
-explicitly because the CLI default is now Auto.
+This release applies the requested application name and MIT licence, adds both
+websites to README.md and the About dialog, updates executable/build/package
+names and retains v1.0.1's complete-content Auto mode for NUL/UTF-16 input.
 
-**Unsigned build.** See `docs/VALIDATION.md` for checks actually performed and
-`docs/NUL_BYTE_FIX.md` for upgrade instructions and a reproducible UTF-16 example.
-Windows GUI interaction and actual Claude uploads still require testing in those
-environments. The user's original source file was not supplied.
+Extract the ZIP into a new folder and run `CFL FileSplitter For Uploading Large Files To Claude.exe`. Do not
+run from inside the ZIP. Leave Auto selected and try fictional data first.
+The folder also contains the CLI, source, MIT licence, runtime notices, tests,
+demonstrations, Claude Python helper and checksums.
 
-Encoded pieces must be decoded/rejoined with code before document analysis;
-this fix does not remove account, context, file-count or execution-resource
-limits. No automatic upload, signature, encryption, PDF-page extraction or
-forensic evidence-format parser is added. Source content is preserved, not
-filesystem metadata or chain of custody. Review licensing before distribution.
+The executable is unsigned. See [validation](VALIDATION.md) for exactly which
+tests ran. Compilation is not an interactive Windows test or a Claude upload
+test. No signing, notarisation, security certification or cloud acceptance is
+claimed. No automatic upload, telemetry, compression or encryption is added.
+
+Copyright (c) 2026 Computer Forensics Lab Ltd. Independent utility; not affiliated
+with or endorsed by Anthropic. Claude is used to identify the intended workflow.

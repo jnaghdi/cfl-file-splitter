@@ -114,6 +114,7 @@ const (
 	openButton    = 111
 	copyButton    = 112
 	helpButton    = 113
+	aboutButton   = 114
 	titleLabel    = 201
 	versionLabel  = 202
 	subtitleLabel = 203
@@ -181,9 +182,9 @@ func layout() {
 	user.NewProc("GetClientRect").Call(hwnd, uintptr(unsafe.Pointer(&r)))
 	w := int(float64(r.Right) / scale)
 	h := int(float64(r.Bottom) / scale)
-	position(titleLabel, 24, 15, w-220, 36)
-	position(versionLabel, w-226, 24, 202, 24)
-	position(subtitleLabel, 24, 54, w-48, 22)
+	position(titleLabel, 24, 15, w-48, 34)
+	position(versionLabel, w-226, 54, 202, 24)
+	position(subtitleLabel, 24, 54, w-270, 22)
 	position(sourceGroup, 16, 83, w-32, 86)
 	position(sourceEdit, 32, 110, w-161, 28)
 	position(sourceButton, w-115, 109, 83, 30)
@@ -210,14 +211,15 @@ func layout() {
 	position(logEdit, 24, 520, w-48, h-586)
 	position(copyButton, 24, h-50, 184, 30)
 	position(helpButton, 220, h-50, 94, 30)
-	position(footerLabel, 330, h-46, w-354, 28)
+	position(aboutButton, 326, h-50, 122, 30)
+	position(footerLabel, 462, h-46, w-486, 28)
 }
 
 func initControls() {
-	add(titleLabel, "STATIC", "CFL File Splitter", 0, 0)
+	add(titleLabel, "STATIC", core.AppName, 0, 0)
 	send.Call(controls[titleLabel], 0x30, titleFont, 1)
 	add(versionLabel, "STATIC", "v"+core.Version+"  |  Local processing", 2, 0)
-	add(subtitleLabel, "STATIC", "Prepare smaller uploads. Identify every part. Verify the reconstructed file.", 0, 0)
+	add(subtitleLabel, "STATIC", "Split, verify and rejoin files locally.", 0, 0)
 	add(sourceGroup, "BUTTON", "  1. Source file  ", 7, 0)
 	add(sourceEdit, "EDIT", "", tabstop|0x80, 0x200)
 	add(sourceButton, "BUTTON", "Browse...", tabstop, 0)
@@ -253,11 +255,13 @@ func initControls() {
 	add(copyButton, "BUTTON", "Copy Claude instructions", tabstop, 0)
 	setEnabled(copyButton, false)
 	add(helpButton, "BUTTON", "Help", tabstop, 0)
-	add(footerLabel, "STATIC", "No automatic uploads or telemetry. Hashes are not digital signatures.", 0, 0)
+	add(aboutButton, "BUTTON", "About & licence", tabstop, 0)
+	add(footerLabel, "STATIC", "Local only. No telemetry. MIT licensed.", 0, 0)
 	estimate()
 	layout()
 	shell.NewProc("DragAcceptFiles").Call(hwnd, 1)
 	user.NewProc("SetTimer").Call(hwnd, 1, 80, 0)
+	logLine(core.AppName + " v" + core.Version + " | MIT License")
 	logLine("Local application. Source files are read only; split sets are verified from disk before completion.")
 	logLine("For Claude: uploads must be accepted and accessible as original bytes. Splitting does not bypass token, context or file-count limits.")
 }
@@ -663,8 +667,12 @@ func openFolder() {
 		shell.NewProc("ShellExecuteW").Call(hwnd, up(ptr("open")), up(ptr(lastFolder)), 0, 0, 1)
 	}
 }
+func about() {
+	alert(core.AppName, core.AppName+"\nVersion "+core.Version+" - Windows x64\n\n"+core.Copyright+"\nMIT License - see LICENSE in the extracted application folder.\n\n"+core.PrimaryWebsite+"\n"+core.DiscoveryWebsite+"\n\nIndependent utility; not affiliated with or endorsed by Anthropic.\nNo automatic uploads or telemetry. Hashes are not digital signatures.\n\nUnsigned development build. Test with fictional data first.", 0x40)
+}
+
 func help() {
-	alert("Using CFL File Splitter", `SPLIT
+	alert(core.AppName+" - Help", `SPLIT
 Choose a source file and output parent folder. Start at 20 MB. Split & verify performs a source hash scan, writes parts, and independently verifies the saved parts. The source contents are never rewritten.
 
 MODES
@@ -743,6 +751,8 @@ func wndProc(h uintptr, m uint32, w, l uintptr) uintptr {
 			copyInstructions()
 		case helpButton:
 			help()
+		case aboutButton:
+			about()
 		}
 		return 0
 	case 0x233:
@@ -794,7 +804,7 @@ func main() {
 		return h
 	}
 	font = makeFont(15, 400)
-	titleFont = makeFont(29, 600)
+	titleFont = makeFont(24, 600)
 	icon, _, _ := user.NewProc("LoadIconW").Call(0, 32512)
 	cursor, _, _ := user.NewProc("LoadCursorW").Call(0, 32512)
 	class := wndClass{Proc: syscall.NewCallback(wndProc), Instance: instance, Icon: icon, SmallIcon: icon, Cursor: cursor, Background: 16, ClassName: ptr("CFLFileSplitterV1")}
@@ -812,7 +822,7 @@ func main() {
 	if desiredHeight < 680 {
 		desiredHeight = 680
 	}
-	h, _, _ := createWindow.Call(0, up(class.ClassName), up(ptr("CFL File Splitter - Split, Verify & Rejoin")), 0x00cf0000, 0x80000000, 0x80000000, px(980), px(desiredHeight), 0, 0, instance, 0)
+	h, _, _ := createWindow.Call(0, up(class.ClassName), up(ptr(core.AppName+" - v"+core.Version)), 0x00cf0000, 0x80000000, 0x80000000, px(980), px(desiredHeight), 0, 0, instance, 0)
 	if h == 0 {
 		alert("Startup error", "Could not create the application window.", 0x10)
 		return

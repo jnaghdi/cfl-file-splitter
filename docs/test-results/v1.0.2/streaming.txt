@@ -1,0 +1,6 @@
+PASS: 268,435,473-byte binary source -> 18 encoded TXT pieces, each <= 20,000,000 bytes.
+PASS: independent Python verification of every part and the whole original hash.
+PASS: Go rejoin, read-back verification, exact size and independently computed original/output SHA-256 match.
+SHA256: e947673df05b471e03768ce3c3c8090371b01c9aeaeeb7756afe47965646a9d2
+This is a synthetic streaming test, not a Windows UI test or a multi-terabyte qualification.
+Test execution seconds: 7.59

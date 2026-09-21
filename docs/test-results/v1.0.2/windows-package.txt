@@ -1,0 +1,25 @@
+PASS: external ZIP SHA-256
+PASS: unique ZIP members
+PASS: safe relative ZIP paths
+PASS: package within expected inspection size
+PASS: ZIP CRCs
+PASS: single expected versioned root folder
+PASS: all required release files
+PASS: obsolete root GUI filename absent
+PASS: README application name and both websites
+PASS: MIT licence equals source and embedded copy
+PASS: all bundled Python helper copies identical
+PASS: complete internal SHA-256 inventory
+PASS: every embedded source checksum
+PASS: build metadata name/version/licence
+PASS: build metadata websites
+PASS: Windows x64 PE: CFL FileSplitter For Uploading Large Files To Claude.exe
+PASS: correct GUI/console subsystem: CFL FileSplitter For Uploading Large Files To Claude.exe
+PASS: compiled branding strings: CFL FileSplitter For Uploading Large Files To Claude.exe
+PASS: binary hash matches build metadata: CFL FileSplitter For Uploading Large Files To Claude.exe
+PASS: Windows x64 PE: CFL_FileSplitter_CLI.exe
+PASS: correct GUI/console subsystem: CFL_FileSplitter_CLI.exe
+PASS: compiled branding strings: CFL_FileSplitter_CLI.exe
+PASS: binary hash matches build metadata: CFL_FileSplitter_CLI.exe
+PASS: no unsupported signing/interactive-test claims
+PASS: 24 Windows package static checks. No Windows code executed.

@@ -47,7 +47,7 @@ After authenticating and setting your normal Git author configuration:
 git init -b main
 git add .
 git diff --cached --stat
-git commit -m "Initial CFL File Splitter 1.0.1 source repository"
+git commit -m "Initial CFL FileSplitter For Uploading Large Files To Claude 1.0.2 source repository"
 gh repo create cfl-file-splitter --private --source . --remote origin --push --disable-wiki --description "Windows file splitter, verifier and joiner with SHA-256-verified self-identifying parts."
 ```
 
@@ -62,14 +62,15 @@ Open the actual repository URL printed by the script. Check the Actions tab for
 real results; no CI status is preclaimed. Configure branch protection/repository
 rules, reviewers and private security reporting according to your account's
 available features. Consider requiring the Linux and Windows checks before
-merging. Keep the project private pending licensing review.
+merging. The project is MIT licensed. Repository visibility remains the owner's choice;
+the publisher defaults to private to avoid unintended public disclosure.
 
 The source tree contains no EXEs by design. Successful Windows CI builds upload
 a ZIP artifact. Tagging the exact application version creates a draft release:
 
 ```powershell
-git tag -a v1.0.1 -m "CFL File Splitter 1.0.1"
-git push origin v1.0.1
+git tag -a v1.0.2 -m "CFL FileSplitter For Uploading Large Files To Claude 1.0.2"
+git push origin v1.0.2
 ```
 
 Do this only after checking CI and following `RELEASE_CHECKLIST.md`. The release
@@ -94,3 +95,33 @@ Checked when preparing this repository, 2026-09-18:
 - https://cli.github.com/manual/gh_repo_create
 - https://cli.github.com/manual/gh_release_create
 - https://docs.github.com/en/actions/tutorials/build-and-test-code/go
+
+## Import the supplied Git bundle
+
+The GitHub ZIP includes a source tree without `.git` and a separate Git bundle.
+Use only one import route. To preserve the supplied two-snapshot history, run:
+
+```powershell
+git clone --branch main --origin bundle-source .\cfl-filesplitter-for-claude-v1.0.2.bundle cfl-file-splitter
+cd cfl-file-splitter
+git bundle verify ..\cfl-filesplitter-for-claude-v1.0.2.bundle
+gh auth login --hostname github.com --git-protocol https --web
+gh auth status --hostname github.com
+```
+
+Review `git log`, `git status`, the source inventory and the authenticated account.
+For a NEW private repository only, run:
+
+```powershell
+gh repo create cfl-file-splitter --private --source=. --remote=origin --push
+```
+
+The separate `publish-github.ps1` deliberately refuses existing commit history;
+use the commands above for a bundle clone, not that script. The `v1.0.2` tag is
+present locally; do not push it until release checks are complete. No remote
+repository is created merely by extracting the ZIP or cloning the offline bundle.
+
+For an existing GitHub repository, clone it separately, make a review branch and
+merge these Windows changes deliberately. Do not overwrite the repository's `.git`
+or delete existing Mac files when applying this Windows-focused source refresh.
+No force-push or automatic public publication is required.

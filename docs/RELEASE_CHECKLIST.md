@@ -1,12 +1,13 @@
 # Owner release checklist
 
-- [ ] Confirm ownership/licensing and private/public distribution decision.
+- [ ] Retain MIT copyright/permission notices and Go runtime notices; confirm the private/public distribution decision.
 - [ ] Review changes; exclude real evidence, credentials and customer details.
 - [ ] Confirm VERSION matches core.Version and the proposed v-prefixed tag.
 - [ ] Run repository, Go, Python cross-language, Auto-mode and streaming tests.
 - [ ] On Windows, test the supplied UTF-16 example in Auto; then select strict
       readable mode and confirm the offered encoded retry works without changing
-      the original. Confirm the GUI reports v1.0.1 and the actual output encoding.
+      the original. Confirm the GUI reports v1.0.2 and the actual output encoding.
+- [ ] Confirm the complete new name fits the header at supported DPI/window sizes; test About & licence.
 - [ ] Review the actual GitHub Linux/Windows CI results, not only local reports.
 - [ ] Inspect the Windows package, source inventory, build information and hashes.
 - [ ] Smoke-test the GUI on actual Windows x64: source/folder selection, drag/drop,

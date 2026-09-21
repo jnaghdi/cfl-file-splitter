@@ -111,7 +111,7 @@ def main() -> int:
     try:
         if args.write:
             files = source_files()
-            lines = ['# CFL File Splitter source inventory; SHA-256, two spaces, relative path.',
+            lines = ['# CFL FileSplitter For Uploading Large Files To Claude source inventory; SHA-256, two spaces, relative path.',
                      '# The inventory does not authenticate its own origin. Review files before publishing.']
             lines += [f'{digest(p)}  {p.relative_to(ROOT).as_posix()}' for p in files]
             with MANIFEST.open('w', encoding='utf-8', newline='\n') as output:

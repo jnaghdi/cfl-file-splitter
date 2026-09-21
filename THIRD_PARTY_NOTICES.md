@@ -16,4 +16,7 @@ Their pinned revisions are recorded in [docs/BUILD_DEPENDENCIES.md](docs/BUILD_D
 
 Claude, Anthropic, GitHub, Go, Python, Microsoft and Windows names are used for
 identification. This independent utility is not endorsed by those organisations.
-The original project licensing decision is recorded in [LICENSE](LICENSE).
+The original project code is licensed under MIT; see [LICENSE](LICENSE).
+The Go runtime retains its own licence. MIT does not relicense third-party code.
+Copyright (c) 2026 Computer Forensics Lab Ltd.
+Project websites: https://cflab.uk and https://e-discovery.uk.

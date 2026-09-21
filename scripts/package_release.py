@@ -47,13 +47,16 @@ def main() -> int:
         version = (ROOT/'VERSION').read_text().strip()
         if not re.fullmatch(r'[0-9]+\.[0-9]+\.[0-9]+', version):
             raise ValueError('Invalid VERSION')
-        binaries = [ROOT/'bin'/name for name in ('CFL_File_Splitter.exe', 'CFL_Splitter_CLI.exe')]
+        binaries = [ROOT/'bin'/name for name in ('CFL FileSplitter For Uploading Large Files To Claude.exe', 'CFL_FileSplitter_CLI.exe')]
         for binary in binaries:
             validate_pe(binary)
         if not shutil.which('go'):
             raise ValueError('Go is required to record binary build metadata and its licence.')
         build_info = {
-            'project': 'CFL File Splitter', 'version': version,
+            'project': 'CFL FileSplitter For Uploading Large Files To Claude', 'version': version,
+            'license': 'MIT',
+            'copyright': 'Copyright (c) 2026 Computer Forensics Lab Ltd',
+            'websites': ['https://cflab.uk', 'https://e-discovery.uk'],
             'packaged_utc': datetime.now(timezone.utc).isoformat(),
             'packaging_go_version': command('go', 'version'),
             'binary_build_metadata': {p.name: command('go', 'version', '-m', str(p)) for p in binaries},
@@ -73,8 +76,8 @@ def main() -> int:
         go_license = Path(command('go', 'env', 'GOROOT'))/'LICENSE'
         if not go_license.is_file():
             raise ValueError('Cannot locate the packaging Go toolchain licence.')
-        prefix = f'CFL_File_Splitter_v{version}/'
-        start = f"""CFL FILE SPLITTER {version} - WINDOWS X64\n\nExtract the ZIP before running CFL_File_Splitter.exe.\nNo Python/.NET/Go runtime is required to run the EXEs.\n\nChoose a source file, an existing output parent folder and maximum piece size.\nLeave Output format at Auto (recommended). Start with fictional data in examples/.\nClick Split & verify. Auto uses readable UTF-8 when suitable, otherwise lossless Base64.\nNUL bytes and UTF-16/binary content are preserved, not removed or converted.\nRead docs/NUL_BYTE_FIX.md for the 1.0.1 fix and the included UTF-16 regression example.\nREADME.md and docs/ contain usage, integrity, build and privacy information.\nCLAUDE_JOINER.txt is the Python helper; the app also emits a copy in each split set.\n\nUnsigned build. Read docs/VALIDATION.md for tests actually performed.\nCompiling a GUI is not testing it interactively. No Claude upload is guaranteed.\nSHA256SUMS.txt checks package contents; it is not a digital signature.\nBUILD_INFO.json records the available build metadata.\nNever upload sensitive files without appropriate authorisation.\n"""
+        prefix = f'CFL_FileSplitter_v{version}/'
+        start = f"""CFL FileSplitter For Uploading Large Files To Claude {version} - WINDOWS X64\n\nExtract the ZIP before running CFL FileSplitter For Uploading Large Files To Claude.exe.\nNo Python/.NET/Go runtime is required to run the EXEs.\n\nChoose a source file, an existing output parent folder and maximum piece size.\nLeave Output format at Auto (recommended). Start with fictional data in examples/.\nClick Split & verify. Auto uses readable UTF-8 when suitable, otherwise lossless Base64.\nNUL bytes and UTF-16/binary content are preserved, not removed or converted.\nRead docs/NUL_BYTE_FIX.md for the 1.0.1 fix and the included UTF-16 regression example.\nMIT License. Copyright (c) 2026 Computer Forensics Lab Ltd.\nWebsites: https://cflab.uk | https://e-discovery.uk\nREADME.md and docs/ contain usage, integrity, build and privacy information.\nCLAUDE_JOINER.txt is the Python helper; the app also emits a copy in each split set.\n\nUnsigned build. Read docs/VALIDATION.md for tests actually performed.\nCompiling a GUI is not testing it interactively. No Claude upload is guaranteed.\nSHA256SUMS.txt checks package contents; it is not a digital signature.\nBUILD_INFO.json records the available build metadata.\nNever upload sensitive files without appropriate authorisation.\n"""
         content = {relative: safe_path(relative).read_bytes() for _, relative in items}
         content[MANIFEST.name] = MANIFEST.read_bytes()
         for binary in binaries:
@@ -89,7 +92,7 @@ def main() -> int:
             for relative, data in sorted(content.items()))+'\n').encode('utf-8')
         out_dir = args.output_dir.resolve()
         out_dir.mkdir(parents=True, exist_ok=True)
-        archive = out_dir/f'CFL_File_Splitter_Windows_v{version}.zip'
+        archive = out_dir/f'CFL_FileSplitter_For_Uploading_Large_Files_To_Claude_Windows_v{version}.zip'
         sidecar = archive.with_suffix(archive.suffix+'.sha256')
         if archive.exists() or sidecar.exists():
             raise FileExistsError('Release ZIP/checksum exists; use a new output directory. No overwrite.')
