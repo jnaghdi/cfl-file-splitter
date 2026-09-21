@@ -1,0 +1,3 @@
+PASS: Python helper is byte-identical to v1.0.0.
+PASS: v1.0.0 Go joiner reconstructs new Auto-generated base64 pieces exactly.
+PASS: v1.0.0 Go joiner reconstructs new Auto-generated utf8 pieces exactly.

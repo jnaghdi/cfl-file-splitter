@@ -1,0 +1,26 @@
+PASS: Go -> Python binary, 0 original bytes
+PASS: Go -> Python binary, 1 original bytes
+PASS: Go -> Python binary, 17 original bytes
+PASS: Go -> Python binary, 65,537 original bytes
+PASS: Go -> Python binary, 2,100,003 original bytes
+PASS: Go -> Python base64, 0 original bytes
+PASS: Go -> Python base64, 1 original bytes
+PASS: Go -> Python base64, 17 original bytes
+PASS: Go -> Python base64, 65,537 original bytes
+PASS: Go -> Python base64, 2,100,003 original bytes
+PASS: Go -> Python utf8, 0 original bytes
+PASS: Go -> Python utf8, 27 original bytes
+PASS: Go -> Python utf8, 27,000 original bytes
+PASS: Go -> Python utf8, 4,050,000 original bytes
+PASS: Python-created binary -> Go rejoin
+PASS: Python-created base64 -> Go rejoin
+PASS: Python-created utf8 -> Go rejoin
+PASS: Python rejects missing, no completed bad output
+PASS: Python rejects duplicate, no completed bad output
+PASS: Python rejects corrupt, no completed bad output
+PASS: Python rejects truncated, no completed bad output
+PASS: Python rejects mixed, no completed bad output
+PASS: Python rejects unsafe_name, no completed bad output
+PASS: Python rejects whole_hash, no completed bad output
+PASS: Python rejects overwrite, no completed bad output
+PASS: 25 cross-language / Python scenarios

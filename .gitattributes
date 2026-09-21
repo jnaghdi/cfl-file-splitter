@@ -1,0 +1,13 @@
+# Source is consistently LF; cmd launchers use CRLF on checkout.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.exe -text
+*.zip -text
+*.png -text
+
+# Crucial: demo inputs and CFLSPLIT pieces are BYTE-EXACT fixtures.
+# Do not normalize line endings, add a final newline, or rewrite these files.
+examples/** -text
+internal/core/assets/CLAUDE_JOINER.txt -text
+tools/claude_joiner.py -text

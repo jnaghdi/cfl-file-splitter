@@ -1,0 +1,4 @@
+CFLSPLIT/1
+{"format":"CFLSPLIT","version":1,"set_id":"88082a9a67493f3f75a1405747fa6a65","original_name":"demo_log.txt","original_size":1579,"original_sha256":"131eeaec2b7cb1fea310e31cdecca7f57742381fc5c312c103a6720a4a916d1c","original_modified_utc":"2026-09-18T22:44:12.952733635Z","created_utc":"2026-09-18T22:44:12Z","encoding":"base64","part_index":3,"total_parts":6,"offset":612,"payload_size":306,"payload_sha256":"36a6a11b975ddca87fdacf28d123cbcc56210a9841da4ffde38a14f1e4340b89"}
+
+cHJlc2VudGVkLgpSRUNPUkQgMDU6IFNhbXBsZSBpdGVtIDA1OyBzdGF0dXM9Y29tcGxldGU7IGNhdGVnb3J5PWRlbW9uc3RyYXRpb24uIE5vIHJlYWwgcGVyc29uIG9yIGNhc2UgaXMgcmVwcmVzZW50ZWQuClJFQ09SRCAwNjogU2FtcGxlIGl0ZW0gMDY7IHN0YXR1cz1jb21wbGV0ZTsgY2F0ZWdvcnk9ZGVtb25zdHJhdGlvbi4gTm8gcmVhbCBwZXJzb24gb3IgY2FzZSBpcyByZXByZXNlbnRlZC4KUkVDT1JEIDA3OiBTYW1wbGUgaXRlbSAwNzsgc3RhdHVzPWNvbXBsZXRlOyBjYXRlZ29yeT1kZW1vbnN0cmF0aW9uLiBObyByZWFsIHBlcnNv

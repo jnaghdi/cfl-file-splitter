@@ -1,0 +1,6 @@
+go version go1.23.2 linux/amd64
+?   	cflsplit/cmd/cflcli	[no test files]
+ok  	cflsplit/internal/core	1.070s
+Built native CLI and Windows x64 GUI/CLI in bin/. GUI runtime testing is still required.
+bin/CFL_File_Splitter.exe: PE32+ executable for MS Windows 6.01 (GUI), x86-64, 8 sections
+bin/CFL_Splitter_CLI.exe:  PE32+ executable for MS Windows 6.01 (console), x86-64, 8 sections

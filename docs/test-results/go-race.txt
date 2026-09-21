@@ -1,0 +1,1 @@
+ok  	cflsplit/internal/core	9.516s

@@ -1,0 +1,2 @@
+131eeaec2b7cb1fea310e31cdecca7f57742381fc5c312c103a6720a4a916d1c  demo_log.txt
+Keep this hash separately from the parts when independent integrity checking matters.

@@ -1,0 +1,19 @@
+CFL SPLITTER DEMONSTRATION - ALL RECORDS ARE FICTIONAL
+This is a harmless practice file for verifying split-file reconstruction.
+It contains twelve numbered records and a Unicode demonstration.
+
+RECORD 01: Sample item 01; status=complete; category=demonstration. No real person or case is represented.
+RECORD 02: Sample item 02; status=complete; category=demonstration. No real person or case is represented.
+RECORD 03: Sample item 03; status=complete; category=demonstration. No real person or case is represented.
+RECORD 04: Sample item 04; status=complete; category=demonstration. No real person or case is represented.
+RECORD 05: Sample item 05; status=complete; category=demonstration. No real person or case is represented.
+RECORD 06: Sample item 06; status=complete; category=demonstration. No real person or case is represented.
+RECORD 07: Sample item 07; status=complete; category=demonstration. No real person or case is represented.
+RECORD 08: Sample item 08; status=complete; category=demonstration. No real person or case is represented.
+RECORD 09: Sample item 09; status=complete; category=demonstration. No real person or case is represented.
+RECORD 10: Sample item 10; status=complete; category=demonstration. No real person or case is represented.
+RECORD 11: Sample item 11; status=complete; category=demonstration. No real person or case is represented.
+RECORD 12: Sample item 12; status=complete; category=demonstration. No real person or case is represented.
+
+Unicode preservation check: café, Ελληνικά, سلام دنیا, 😀.
+END OF DEMONSTRATION

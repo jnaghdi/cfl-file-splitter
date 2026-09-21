@@ -1,0 +1,8 @@
+CFLSPLIT/1
+{"format":"CFLSPLIT","version":1,"set_id":"9f381ed0e864bbbea66c5512a08d2158","original_name":"demo_log.txt","original_size":1579,"original_sha256":"131eeaec2b7cb1fea310e31cdecca7f57742381fc5c312c103a6720a4a916d1c","original_modified_utc":"2026-09-18T22:44:12.952733635Z","created_utc":"2026-09-18T22:44:12Z","encoding":"utf8","part_index":5,"total_parts":5,"offset":1265,"payload_size":314,"payload_sha256":"7a4e99e33f0a991472a65a9fbdee1754308d167749723ef92f60c299989e097e"}
+
+RECORD 11: Sample item 11; status=complete; category=demonstration. No real person or case is represented.
+RECORD 12: Sample item 12; status=complete; category=demonstration. No real person or case is represented.
+
+Unicode preservation check: café, Ελληνικά, سلام دنیا, 😀.
+END OF DEMONSTRATION

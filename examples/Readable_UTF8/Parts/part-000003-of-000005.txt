@@ -1,0 +1,6 @@
+CFLSPLIT/1
+{"format":"CFLSPLIT","version":1,"set_id":"9f381ed0e864bbbea66c5512a08d2158","original_name":"demo_log.txt","original_size":1579,"original_sha256":"131eeaec2b7cb1fea310e31cdecca7f57742381fc5c312c103a6720a4a916d1c","original_modified_utc":"2026-09-18T22:44:12.952733635Z","created_utc":"2026-09-18T22:44:12Z","encoding":"utf8","part_index":3,"total_parts":5,"offset":623,"payload_size":321,"payload_sha256":"f118020e04d0d2ae2a23ad4ef6c456c833684877c165ff20655418ded16668ee"}
+
+RECORD 05: Sample item 05; status=complete; category=demonstration. No real person or case is represented.
+RECORD 06: Sample item 06; status=complete; category=demonstration. No real person or case is represented.
+RECORD 07: Sample item 07; status=complete; category=demonstration. No real person or case is represented.

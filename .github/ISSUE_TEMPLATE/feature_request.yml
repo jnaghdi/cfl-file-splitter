@@ -1,0 +1,16 @@
+name: Feature request
+description: Suggest an improvement without sharing confidential data.
+title: "[Feature] "
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Problem or workflow
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour and integrity/privacy implications
+    validations:
+      required: true

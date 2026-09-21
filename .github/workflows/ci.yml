@@ -1,0 +1,84 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PYTHONUTF8: '1'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+          check-latest: true
+          cache: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Toolchain versions
+        run: |
+          go version
+          python --version
+      - name: Verify Go formatting
+        run: |
+          files="$(gofmt -l cmd internal)"
+          if [[ -n "$files" ]]; then printf '%s\n' "$files"; exit 1; fi
+      - name: Verify repository inventory and fixtures
+        run: python tests/repository_test.py
+      - name: Go tests
+        run: go test -count=1 -v ./...
+      - name: Vet engine and CLI
+        run: go vet ./internal/core ./cmd/cflcli
+      - name: Cross-language interoperability
+        run: python tests/cross_language_test.py
+      - name: Auto-mode encoding regression tests
+        run: python tests/auto_mode_test.py
+      - name: Race detector (Linux engine)
+        if: runner.os == 'Linux'
+        run: go test -race -count=1 ./internal/core
+      - name: Larger synthetic streaming test
+        if: runner.os == 'Linux'
+        run: python tests/streaming_test.py
+      - name: Build Windows x64 binaries
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - name: Package Windows artifact
+        if: runner.os == 'Windows'
+        run: python scripts/package_release.py
+      - name: Upload Windows package and checksum
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: CFL-File-Splitter-Windows-x64
+          path: |
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
+          retention-days: 14

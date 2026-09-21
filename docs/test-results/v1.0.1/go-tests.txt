@@ -1,0 +1,147 @@
+?   	cflsplit/cmd/cflcli	[no test files]
+=== RUN   TestAutoModeRoundTrips
+=== RUN   TestAutoModeRoundTrips/empty
+=== RUN   TestAutoModeRoundTrips/ascii
+=== RUN   TestAutoModeRoundTrips/unicode-bom
+=== RUN   TestAutoModeRoundTrips/replacement-character-is-valid
+=== RUN   TestAutoModeRoundTrips/nul-only
+=== RUN   TestAutoModeRoundTrips/embedded-nul
+=== RUN   TestAutoModeRoundTrips/utf16le-bom
+=== RUN   TestAutoModeRoundTrips/utf16le-no-bom
+=== RUN   TestAutoModeRoundTrips/utf16be-bom
+=== RUN   TestAutoModeRoundTrips/utf16be-no-bom
+=== RUN   TestAutoModeRoundTrips/utf32le-bom
+=== RUN   TestAutoModeRoundTrips/utf32be-bom
+=== RUN   TestAutoModeRoundTrips/windows1252
+=== RUN   TestAutoModeRoundTrips/overlong-utf8
+=== RUN   TestAutoModeRoundTrips/incomplete-last-rune
+=== RUN   TestAutoModeRoundTrips/invalid-at-text-boundary
+=== RUN   TestAutoModeRoundTrips/arbitrary-binary
+--- PASS: TestAutoModeRoundTrips (0.05s)
+    --- PASS: TestAutoModeRoundTrips/empty (0.00s)
+    --- PASS: TestAutoModeRoundTrips/ascii (0.00s)
+    --- PASS: TestAutoModeRoundTrips/unicode-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/replacement-character-is-valid (0.00s)
+    --- PASS: TestAutoModeRoundTrips/nul-only (0.00s)
+    --- PASS: TestAutoModeRoundTrips/embedded-nul (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf16le-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf16le-no-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf16be-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf16be-no-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf32le-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/utf32be-bom (0.00s)
+    --- PASS: TestAutoModeRoundTrips/windows1252 (0.00s)
+    --- PASS: TestAutoModeRoundTrips/overlong-utf8 (0.00s)
+    --- PASS: TestAutoModeRoundTrips/incomplete-last-rune (0.00s)
+    --- PASS: TestAutoModeRoundTrips/invalid-at-text-boundary (0.00s)
+    --- PASS: TestAutoModeRoundTrips/arbitrary-binary (0.01s)
+=== RUN   TestAutoValidatesBeyondInitialSample
+--- PASS: TestAutoValidatesBeyondInitialSample (0.24s)
+=== RUN   TestAutoUTF8AcrossReadAndPartBoundaries
+--- PASS: TestAutoUTF8AcrossReadAndPartBoundaries (0.04s)
+=== RUN   TestReadableCompatibilityErrorsAreTyped
+--- PASS: TestReadableCompatibilityErrorsAreTyped (0.00s)
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures/cancelled
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures/missing-source
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures/invalid-output
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures/invalid-size
+=== RUN   TestAutoDoesNotFallbackOnUnrelatedFailures/io-error
+--- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures (0.00s)
+    --- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures/cancelled (0.00s)
+    --- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures/missing-source (0.00s)
+    --- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures/invalid-output (0.00s)
+    --- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures/invalid-size (0.00s)
+    --- PASS: TestAutoDoesNotFallbackOnUnrelatedFailures/io-error (0.00s)
+=== RUN   TestAutoCancellationDuringFallback
+--- PASS: TestAutoCancellationDuringFallback (0.00s)
+=== RUN   TestAutoReportsActualMode
+--- PASS: TestAutoReportsActualMode (0.00s)
+=== RUN   TestRoundTrips
+=== RUN   TestRoundTrips/binary-0
+=== RUN   TestRoundTrips/binary-1
+=== RUN   TestRoundTrips/binary-2
+=== RUN   TestRoundTrips/binary-3
+=== RUN   TestRoundTrips/binary-15
+=== RUN   TestRoundTrips/binary-16
+=== RUN   TestRoundTrips/binary-199
+=== RUN   TestRoundTrips/binary-200
+=== RUN   TestRoundTrips/binary-201
+=== RUN   TestRoundTrips/binary-997
+=== RUN   TestRoundTrips/binary-3000
+=== RUN   TestRoundTrips/base64-0
+=== RUN   TestRoundTrips/base64-1
+=== RUN   TestRoundTrips/base64-2
+=== RUN   TestRoundTrips/base64-3
+=== RUN   TestRoundTrips/base64-15
+=== RUN   TestRoundTrips/base64-16
+=== RUN   TestRoundTrips/base64-199
+=== RUN   TestRoundTrips/base64-200
+=== RUN   TestRoundTrips/base64-201
+=== RUN   TestRoundTrips/base64-997
+=== RUN   TestRoundTrips/base64-3000
+--- PASS: TestRoundTrips (0.05s)
+    --- PASS: TestRoundTrips/binary-0 (0.00s)
+    --- PASS: TestRoundTrips/binary-1 (0.00s)
+    --- PASS: TestRoundTrips/binary-2 (0.00s)
+    --- PASS: TestRoundTrips/binary-3 (0.00s)
+    --- PASS: TestRoundTrips/binary-15 (0.00s)
+    --- PASS: TestRoundTrips/binary-16 (0.00s)
+    --- PASS: TestRoundTrips/binary-199 (0.00s)
+    --- PASS: TestRoundTrips/binary-200 (0.00s)
+    --- PASS: TestRoundTrips/binary-201 (0.00s)
+    --- PASS: TestRoundTrips/binary-997 (0.00s)
+    --- PASS: TestRoundTrips/binary-3000 (0.00s)
+    --- PASS: TestRoundTrips/base64-0 (0.00s)
+    --- PASS: TestRoundTrips/base64-1 (0.00s)
+    --- PASS: TestRoundTrips/base64-2 (0.00s)
+    --- PASS: TestRoundTrips/base64-3 (0.00s)
+    --- PASS: TestRoundTrips/base64-15 (0.00s)
+    --- PASS: TestRoundTrips/base64-16 (0.00s)
+    --- PASS: TestRoundTrips/base64-199 (0.00s)
+    --- PASS: TestRoundTrips/base64-200 (0.00s)
+    --- PASS: TestRoundTrips/base64-201 (0.00s)
+    --- PASS: TestRoundTrips/base64-997 (0.00s)
+    --- PASS: TestRoundTrips/base64-3000 (0.01s)
+=== RUN   TestReadableUnicode
+--- PASS: TestReadableUnicode (0.03s)
+=== RUN   TestRejectInvalidText
+--- PASS: TestRejectInvalidText (0.00s)
+=== RUN   TestRenamingAndUnrelatedFiles
+--- PASS: TestRenamingAndUnrelatedFiles (0.00s)
+=== RUN   TestMissing
+--- PASS: TestMissing (0.00s)
+=== RUN   TestDuplicate
+--- PASS: TestDuplicate (0.00s)
+=== RUN   TestMixedSets
+--- PASS: TestMixedSets (0.00s)
+=== RUN   TestCorruptionAndNoPublishedOutput
+=== RUN   TestCorruptionAndNoPublishedOutput/binary
+=== RUN   TestCorruptionAndNoPublishedOutput/base64
+=== RUN   TestCorruptionAndNoPublishedOutput/utf8
+--- PASS: TestCorruptionAndNoPublishedOutput (0.01s)
+    --- PASS: TestCorruptionAndNoPublishedOutput/binary (0.00s)
+    --- PASS: TestCorruptionAndNoPublishedOutput/base64 (0.00s)
+    --- PASS: TestCorruptionAndNoPublishedOutput/utf8 (0.00s)
+=== RUN   TestTruncatedAndTrailing
+--- PASS: TestTruncatedAndTrailing (0.00s)
+=== RUN   TestUnsafeFilename
+--- PASS: TestUnsafeFilename (0.00s)
+=== RUN   TestMetadataMismatch
+--- PASS: TestMetadataMismatch (0.00s)
+=== RUN   TestOffsetMismatch
+--- PASS: TestOffsetMismatch (0.00s)
+=== RUN   TestWholeHashMismatch
+--- PASS: TestWholeHashMismatch (0.00s)
+=== RUN   TestNeverOverwrite
+--- PASS: TestNeverOverwrite (0.00s)
+=== RUN   TestCancellation
+--- PASS: TestCancellation (0.00s)
+=== RUN   TestCancelledJoin
+--- PASS: TestCancelledJoin (0.00s)
+=== RUN   TestSourceModificationDetected
+--- PASS: TestSourceModificationDetected (0.00s)
+=== RUN   TestStreamingLargeFile
+--- PASS: TestStreamingLargeFile (0.53s)
+PASS
+ok  	cflsplit/internal/core	0.992s

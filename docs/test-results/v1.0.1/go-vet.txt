@@ -1,0 +1,1 @@
+PASS: go vet ./internal/core ./cmd/cflcli (no diagnostics)

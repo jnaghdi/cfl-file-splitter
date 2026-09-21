@@ -1,0 +1,8 @@
+CFLSPLIT/1
+{"format":"CFLSPLIT","version":1,"set_id":"9f381ed0e864bbbea66c5512a08d2158","original_name":"demo_log.txt","original_size":1579,"original_sha256":"131eeaec2b7cb1fea310e31cdecca7f57742381fc5c312c103a6720a4a916d1c","original_modified_utc":"2026-09-18T22:44:12.952733635Z","created_utc":"2026-09-18T22:44:12Z","encoding":"utf8","part_index":1,"total_parts":5,"offset":0,"payload_size":302,"payload_sha256":"86993cf6e94c93728480b84868d0f6195ffc40931e2d9446350298443ade24ac"}
+
+CFL SPLITTER DEMONSTRATION - ALL RECORDS ARE FICTIONAL
+This is a harmless practice file for verifying split-file reconstruction.
+It contains twelve numbered records and a Unicode demonstration.
+
+RECORD 01: Sample item 01; status=complete; category=demonstration. No real person or case is represented.

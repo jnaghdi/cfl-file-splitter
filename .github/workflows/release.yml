@@ -1,0 +1,59 @@
+name: Build draft Windows release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  windows-release:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    env:
+      PYTHONUTF8: '1'
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - name: Checkout tagged source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: stable
+          check-latest: true
+          cache: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+      - name: Verify tag matches VERSION
+        shell: bash
+        run: |
+          python -c 'import os,pathlib; v=pathlib.Path("VERSION").read_text().strip(); assert os.environ["RELEASE_TAG"] == "v"+v, "Tag does not match VERSION"'
+      - name: Tests including streaming
+        shell: pwsh
+        run: ./scripts/test.ps1 -Streaming
+      - name: Build Windows x64 binaries
+        shell: pwsh
+        run: ./scripts/build.ps1
+      - name: Package release
+        shell: bash
+        run: python scripts/package_release.py
+      - name: Create draft release for owner review
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/*.zip dist/*.sha256 \
+            --verify-tag --draft --title "CFL File Splitter $RELEASE_TAG" \
+            --notes-file docs/RELEASE_NOTES.md

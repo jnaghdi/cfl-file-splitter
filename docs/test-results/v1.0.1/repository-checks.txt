@@ -1,0 +1,15 @@
+test_application_version_matches (__main__.RepositoryTests.test_application_version_matches) ... ok
+test_demo_sets_reconstruct_exactly (__main__.RepositoryTests.test_demo_sets_reconstruct_exactly) ... ok
+test_fixture_line_ending_protection (__main__.RepositoryTests.test_fixture_line_ending_protection) ... ok
+test_helper_copies_are_identical (__main__.RepositoryTests.test_helper_copies_are_identical) ... ok
+test_inventory_rejects_unsafe_paths (__main__.RepositoryTests.test_inventory_rejects_unsafe_paths) ... ok
+test_no_binaries_or_case_files_in_inventory (__main__.RepositoryTests.test_no_binaries_or_case_files_in_inventory) ... ok
+test_publisher_has_private_only_remote_creation (__main__.RepositoryTests.test_publisher_has_private_only_remote_creation) ... ok
+test_required_source_files (__main__.RepositoryTests.test_required_source_files) ... ok
+test_source_inventory (__main__.RepositoryTests.test_source_inventory) ... ok
+test_workflow_pins_and_token_scope (__main__.RepositoryTests.test_workflow_pins_and_token_scope) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.028s
+
+OK

@@ -1,0 +1,19 @@
+Synthetic regression: old GUI-equivalent strict UTF-8 engine path vs new Auto.
+User source file not provided. No Windows GUI was executed for this reproduction.
+Fixture: examples/Encoding_Regression/UTF16LE_example.txt
+Bytes: 4042 NUL bytes: 1940 SHA256: 5b8443e838c725af8b3db47498362fc6395d58735acef33f93623b4b8ca52010
+
+v1.0.0 strict-readable exit: 1
+Scan & hash: Reading the original once to plan parts and calculate SHA-256.
+ERROR: NUL byte found: use encoded-text mode for binary or UTF-16 data
+
+v1.0.1 Auto exit: 0
+Scan & hash: Auto mode: checking the complete source for readable UTF-8 while planning and hashing; incompatible data will restart as encoded text.
+Choose format: Auto: switching to Encoded text (Base64). Reason: source is not suitable for Readable UTF-8 mode: NUL byte (0x00) found; the file may be UTF-16 or contain binary data. Choose Auto or Encoded text to preserve all original bytes
+Choose format: Original bytes will NOT be converted or removed. Encoded pieces must be decoded and rejoined before document analysis.
+Write parts: Wrote part 1 of 1 (5886 bytes).
+Verify saved parts: Re-reading every saved part and checking the complete original hash.
+Verify / rejoin: Part 1/1: SHA-256 verified.
+Complete: Verified 1 parts. Original SHA-256: 5b8443e838c725af8b3db47498362fc6395d58735acef33f93623b4b8ca52010
+Actual encoding: base64 Parts: 1 SHA256: 5b8443e838c725af8b3db47498362fc6395d58735acef33f93623b4b8ca52010
+PASS: exact original bytes reconstructed; original remains unchanged.

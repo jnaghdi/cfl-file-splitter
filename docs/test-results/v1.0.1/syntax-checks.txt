@@ -1,0 +1,4 @@
+PASS: Python source parsing
+PASS: Bash syntax checks
+PASS: workflow/issue YAML parsed (not an Actions execution)
+PASS: Go formatting checks

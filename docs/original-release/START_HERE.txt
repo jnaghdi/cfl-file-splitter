@@ -1,0 +1,197 @@
+CFL FILE SPLITTER 1.0.0
+Windows desktop splitter, verifier and joiner
+Build date: 18 September 2026
+
+START
+=====
+1. Extract the entire ZIP to a normal writable folder.
+2. Double-click CFL_File_Splitter.exe.
+3. Select a source file (or drag it onto the window).
+4. Select an output PARENT folder. The app creates a new subfolder automatically.
+5. Choose an output format. Start with the default maximum size of 20 MB.
+6. Click Split & verify. The app scans the source, writes the pieces, then
+   independently re-reads and verifies the saved pieces.
+7. Click Open output folder. This is the folder containing your actual parts.
+
+REQUIREMENTS / RELEASE STATUS
+=============================
+The supplied EXE files are native Windows x86-64 executables intended for
+64-bit Windows 10/11. No Python, .NET, Go installation or administrator rights
+are required for normal GUI operation. Keep the EXE in a writable local folder
+and choose an output drive with sufficient free space.
+
+This is an UNSIGNED first-release utility. Windows or your organisation's
+security controls may display an unknown-publisher warning or block it. Review
+the supplied source and follow your IT approval process; do not disable security
+protection simply to run it. SHA256SUMS.txt records the supplied file hashes;
+these hashes are not a software publisher signature or an authenticity guarantee.
+
+The shared Go engine and Python interoperability were tested in Linux. Both
+Windows executable targets compiled successfully. The Windows GUI has NOT been
+interactively tested on Windows here. Use Demo first and validate on working
+copies before production or evidential use. See TEST_REPORT.txt.
+
+CHOOSE THE RIGHT MODE
+====================
+Readable UTF-8 text (.txt)
+  For UTF-8 TXT, logs and text exports. Payloads remain readable after the small
+  header. Original bytes, line endings, BOM and Unicode are preserved on exact
+  reconstruction. Split boundaries prefer a newline in the last 64 KiB of the
+  available range; otherwise a long line is split at a UTF-8-safe boundary.
+  Invalid UTF-8 and NUL bytes are rejected. This is NOT a CSV-record, JSON-object,
+  document-section or PDF-page-aware splitter. JSON fragments may not be valid
+  standalone JSON; CSV quoted multiline records may cross a part boundary.
+  The original extension does not affect the raw-byte integrity checks.
+
+Encoded text (.txt)
+  A transport option for arbitrary file bytes: PDF, DOCX, ZIP, databases and so on.
+  The payload is Base64, not readable document text. It MUST be decoded and
+  rejoined with code before ordinary processing. Encoding increases payload size
+  by approximately one third; it is not compression, encryption or a way around
+  content/context restrictions. Large encoded TXT files may fail token limits.
+  Uploading fragments does not guarantee Claude can parse the reconstructed type.
+  E01, UFDR, encrypted data and other specialist formats may require other tools.
+
+Binary parts (.cflpart)
+  Lower-overhead byte transport for LOCAL verification and joining. The header
+  is still present. The .cflpart extension is not listed as a supported ordinary
+  Claude chat-upload type in the referenced documentation. Do not assume that
+  changing an extension makes a binary fragment readable.
+
+WHAT IS PRODUCED
+================
+A new CFL_<name>_<timestamp>_<id> subfolder containing:
+  part-000001-of-00000N.txt  (or .cflpart for binary mode)
+  part-000002-of-00000N.txt
+  ...
+  manifest.json             Inventory; optional for joining
+  ORIGINAL_SHA256.txt       Original content hash; retain separately
+  CLAUDE_JOINER.txt         Standalone Python 3 joiner for Claude
+  CLAUDE_INSTRUCTIONS.txt   File-specific instructions and expected hash
+
+Every part embeds the format marker, set ID, original filename/size/hash,
+part index/count, original byte offset, decoded payload length and payload hash.
+Ordering does NOT depend on filenames. Each complete part is at most the chosen
+maximum byte size, INCLUDING its header. MB means 1,000,000 bytes, not MiB.
+A conservative 8 KiB allowance is reserved for each header, so actual parts can
+be slightly smaller than the chosen maximum.
+
+SAVED-PART VERIFICATION
+=======================
+Split operations verify the original during scanning, compare it during writing,
+then re-read the written parts to verify every payload and the original hash.
+Verification rejects mixed sets, duplicate/missing parts, incompatible headers,
+gaps/overlaps, modified/truncated/extra bytes and hash mismatches.
+
+VERIFY AND REJOIN ON WINDOWS
+============================
+Use Verify a set to select the directory containing ONE complete split set.
+Use Rejoin a set, choose that directory, then choose a NEW output filename.
+Choose the original file extension, e.g. restored_report.pdf or restored_log.txt.
+The app deliberately does not auto-trust a filename from an uploaded header.
+Existing output files are never intentionally overwritten. The joiner writes to
+a temporary file, verifies it and performs a read-back check before publication.
+On filesystems without hard-link support it falls back to exclusive creation
+and verified copying; that fallback publication is not atomic.
+Source files and source pieces are not deleted or rewritten. Cancel stops between
+streaming blocks and attempts to remove incomplete output. A crash/power loss
+can leave an _INCOMPLETE_ folder or a .partial file; do not mistake it for success.
+There is no resume feature or recovery for a genuinely missing piece.
+
+UPLOAD TO CLAUDE
+===============
+First try the included Demo set in a NEW chat using non-sensitive data.
+
+For an actual complete reconstruction, attach ONLY the part-*.txt pieces and
+CLAUDE_JOINER.txt plus CLAUDE_INSTRUCTIONS.txt from one completed output folder.
+The manifest and ORIGINAL_SHA256.txt do not have to be uploaded. Do NOT upload
+CFL_File_Splitter.exe, the program's whole ZIP or both alternative Demo sets.
+
+Enable code execution and file creation in Claude. Ask it to inspect the joiner,
+verify the raw attachments, reconstruct with code and compute the actual final
+SHA-256. The helper is valid Python even though its filename ends in .txt:
+
+  python3 CLAUDE_JOINER.txt inspect --parts /path/to/parts
+  python3 CLAUDE_JOINER.txt verify --parts /path/to/parts
+  python3 CLAUDE_JOINER.txt join --parts /path/to/parts --output /new/path/file.ext
+
+It requires Python 3.9+ and uses only the standard library. You do not need Python
+on Windows to use the GUI. Claude would run it in its own execution environment.
+The helper never executes, automatically extracts or uploads recovered contents.
+
+The original attachment BYTES must be available, not merely a text-extraction
+preview. If files are rejected, normalised, truncated, missing or inaccessible
+from code, reconstruction must stop. Do not ask an AI to guess missing content.
+For readable text, independent analysis can instead happen on each text payload;
+be explicit that reviewing batches is different from reconstructing the whole.
+
+CLAUDE LIMITS - DOCUMENTATION CHECKED 18 SEPTEMBER 2026
+====================================================
+Anthropic's general upload page says 500 MB/file and up to 20 files/chat; project
+files 30 MB/file. Its separate file-creation page states 30 MB/file for uploads
+and downloads in that workflow. These are different published statements, not a
+universal verified limit for every account or processing path. This app therefore
+uses a conservative 20 MB default; it does not assert that a 500 MB attachment is
+usable for reconstruction or that even a 20 MB encoded file will be accepted.
+
+With two helper TXT files, leave at most 18 part-file slots under the documented
+20-file chat limit. Do not assume multiple messages bypass a per-chat limit.
+Larger part sizes are configurable, but choose them only when the actual upload
+and processing workflow has been confirmed to support them. Very large datasets
+are better processed locally, including a local coding environment that can call
+the supplied CLI, or through smaller meaningful exports rather than whole images.
+
+Splitting does NOT bypass file-count, extracted-token, context-window, sandbox
+storage, execution-time, PDF-page or supported-format restrictions. Reassembly
+and full substantive processing are distinct tasks. Ask Claude to report exactly
+what it processed and any omissions; do not accept unsupported completeness claims.
+
+Official references:
+https://support.claude.com/en/articles/8241126-upload-files-to-claude
+https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude
+
+PRIVACY / FORENSIC LIMITATIONS
+=============================
+There is no automatic upload, updater or telemetry in this app. Data stays in the
+selected filesystem locations until YOU transfer it. Network shares still use
+your operating system's normal file access. Only upload material you are
+properly authorised to disclose, using an approved account and configuration.
+
+SHA-256 is a content integrity hash, NOT a digital signature. Set IDs identify
+pieces; they do not authenticate their creator. Someone who can replace every
+piece and every recorded hash can create another consistent set. Keep the
+original hash through an independent trusted channel when that distinction matters.
+This release does not implement Ed25519 signing, encryption, parity recovery,
+forensic acquisition, format parsing, malware scanning or chain-of-custody controls.
+
+Only the selected file's ordinary CONTENT stream is preserved. This is not a
+filesystem/evidence imaging tool: timestamps (including access times), ACLs,
+alternate data streams, sparse allocation and other filesystem metadata are not
+preserved or independently acquired. Original last-write time is recorded as
+informational metadata, not restored. Work on stable copies; concurrent changes
+are checked through file metadata and both source passes, not an atomic snapshot.
+Allow enough space for encoded output (~4/3 original), headers, and a reconstructed
+copy; a no-hard-link filesystem may need an additional copy during publication.
+
+COMMAND LINE (OPTIONAL)
+=======================
+From Command Prompt in the extracted program folder:
+
+  CFL_Splitter_CLI.exe split --source "D:\Work\report.pdf" --output "D:\Uploads" --encoding base64 --max-bytes 20000000
+  CFL_Splitter_CLI.exe split --source "D:\Work\export.txt" --output "D:\Uploads" --encoding utf8 --max-bytes 20000000
+  CFL_Splitter_CLI.exe inspect --parts "D:\Uploads\CFL_example_set"
+  CFL_Splitter_CLI.exe verify --parts "D:\Uploads\CFL_example_set"
+  CFL_Splitter_CLI.exe join --parts "D:\Uploads\CFL_example_set" --output "D:\Work\NEW_report.pdf"
+
+Output parent directories must already exist. --quiet suppresses progress but
+keeps the final JSON result/error. Ctrl+C requests cancellation in the CLI.
+Keep one split set per directory; unrecognised ordinary files are ignored.
+
+SOURCE / REBUILD
+================
+Source contains the complete Go source, embedded Python helper and Go unit tests.
+There are no external Go modules or runtime packages to download. Go 1.23+ is
+needed only to rebuild from source, not to use the supplied Windows binaries.
+REBUILD_WINDOWS.cmd builds both EXE targets and runs the shared engine tests.
+Tests contains captured results and optional Python cross-language test scripts.
+This utility is independent of, and not endorsed by, Anthropic or Microsoft.

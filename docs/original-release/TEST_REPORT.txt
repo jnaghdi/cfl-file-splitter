@@ -1,0 +1,45 @@
+CFL FILE SPLITTER 1.0.0 - TEST REPORT
+18 September 2026
+
+BUILD
+Go 1.23.2. Native Windows AMD64 GUI and CLI PE32+ executables successfully
+cross-compiled on Linux using the Go standard library, CGO disabled.
+No Windows interactive runtime was available for a GUI smoke test.
+
+ENGINE TESTS
+18 top-level Go tests passed, with additional size/encoding subcases.
+Tests include empty files, boundary lengths, binary and Base64 round trips,
+UTF-8/Persian/Greek/emoji and BOM/CRLF preservation, renamed pieces, unrelated
+files, rejection of mixed/missing/duplicate/corrupt/truncated/extra pieces,
+unsafe names, conflicting metadata, gaps/overlaps, whole-file hash mismatch,
+no-overwrite, cancellation cleanup and detection of source modification.
+
+INTEROPERABILITY
+25 cross-language/Python scenarios passed. These include Go-created files
+verified and reconstructed by the Python helper, independently Python-created
+files rejoined by Go, and Python error-path rejection without bad final outputs.
+
+LARGER STREAMING CASE
+A synthetic 268,435,473-byte binary file (256 MiB + 17 bytes) was split into
+18 Base64 TXT pieces, each no larger than 20,000,000 bytes. The Python helper
+independently verified every piece and the original content hash. Go rejoined
+the file, verified its read-back hash, and a further independent comparison of
+source and reconstructed size and SHA-256 matched exactly.
+
+SHA-256 of that synthetic source:
+e947673df05b471e03768ce3c3c8090371b01c9aeaeeb7756afe47965646a9d2
+
+DEMO
+Both included demonstration sets verified successfully with the shared engine.
+They represent the same harmless fictional original with different set IDs.
+
+NOT TESTED / NOT CLAIMED
+- Interactive operation of the Windows GUI, dialogs, drag-and-drop or clipboard.
+- Actual acceptance, raw-byte attachment access or reconstruction inside Claude.
+- Multi-terabyte files, Windows network shares, FAT/NTFS-specific failure cases,
+  power-loss recovery, antivirus reputation or an external security audit.
+- Signed software provenance, evidential admissibility or chain-of-custody controls.
+
+The tests validate implemented behaviour within the stated environment, not
+production certification. Use Demo and stable working copies before real work.
+Detailed captured test outputs are in Tests. Source includes the Go unit tests.

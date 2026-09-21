@@ -1,0 +1,6 @@
+# cflsplit/cmd/cflsplit
+# [cflsplit/cmd/cflsplit]
+cmd/cflsplit/main_windows.go:653:30: possible misuse of unsafe.Pointer
+cmd/cflsplit/main_windows.go:697:21: possible misuse of unsafe.Pointer
+
+Full Windows-target vet exit code: 1
